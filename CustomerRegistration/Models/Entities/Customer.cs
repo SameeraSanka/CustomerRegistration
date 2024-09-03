@@ -1,27 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CustomerRegistration.Models.Entities
+namespace CustomerRegistration.Models.Entities;
+
+public class Customer
 {
-    public class Customer
-    {
+    public Guid Id { get; set; } = Guid.NewGuid();
 
-        public Guid Id { get; set; }
+    [NotMapped]
+    public string FullName => $"{FirstName} {LastName}";
 
-        [Required]
-        public string FirstName { get; set; }
+    public required string FirstName { get; set; }
 
-        [Required]
-        public string LastName { get; set; }
+    public required string LastName { get; set; }
 
-        [Required]
-        public string PhoneNumber { get; set; }
+    [Required]
+    public string PhoneNumber { get; set; }
 
-        public string Email { get; set; }
+    public string Email { get; set; }
 
-        public string Address { get; set; }
+    public string Address { get; set; }
 
-        public string City { get; set; }
+    public string City { get; set; }
 
-        public int PostalCode { get; set; }
-    }
+    public int PostalCode { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
 }
